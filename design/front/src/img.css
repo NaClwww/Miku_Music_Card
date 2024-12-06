@@ -1,0 +1,27 @@
+/* App.css */
+
+/* App.css */
+
+.App {
+    height: 100vh;  /* 容器高度占满全屏 */
+    display: flex;
+    justify-content: center;  /* 水平居中 */
+    align-items: center;      /* 垂直居中 */
+    background-color: black;  /* 背景颜色 */
+    overflow: hidden;         /* 防止图片溢出 */
+  }
+  
+  .image-container {
+    width: 100%;
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+  
+  .image-container img {
+    object-fit: contain;  /* 保持长宽比，确保图片完全显示 */
+    width: 100%;
+    height: 100%;
+  }
+  
