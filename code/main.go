@@ -24,15 +24,17 @@ func main() {
 
 	r := gin.Default()
 
-	r.LoadHTMLGlob("test.html")
+	r.LoadHTMLGlob("build/index.html")
+
+	r.Static("/static", "./build/static")
+
+	r.GET("/url", func(c *gin.Context) {
+		url := getUrl()
+		c.JSON(200, gin.H{"url": url})
+	})
 
 	r.GET("/", func(c *gin.Context) {
-		url := getUrl()
-
-		// 渲染 HTML 页面，并传递 orpheusURL 给前端
-		c.HTML(http.StatusOK, "test.html", gin.H{
-			"url": url,
-		})
+		c.HTML(http.StatusOK, "index.html", gin.H{})
 	})
 	fmt.Println("Starting server on port " + strconv.Itoa(config.Server.Port) + "\n")
 	err := r.Run(":" + strconv.Itoa(config.Server.Port))
