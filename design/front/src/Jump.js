@@ -9,7 +9,7 @@ function Jump() {
       // setUrl(result);  // 将返回的 URL 更新到 state 中
       setTimeout(function() {
         window.location.href = result;
-      }, 5000)
+      }, 3000)
     });
   }, []);
   // console.log(url)
