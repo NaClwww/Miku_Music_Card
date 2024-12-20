@@ -1,4 +1,4 @@
-# Random Music
+# Miku_Music_Card
 基于react  
 能够随机跳转MusicId中的网易云歌曲  
 一个低质量制作。。。  
