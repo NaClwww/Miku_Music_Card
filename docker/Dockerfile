@@ -1,6 +1,9 @@
 # 使用官方的 Nginx 镜像作为基础镜像
 FROM nginx:alpine
 
+# 安装依赖
+RUN apk update && apk add --no-cache bash
+
 # 将构建的文件复制到 Nginx 的默认静态文件目录
 COPY build /usr/share/nginx/html
 
