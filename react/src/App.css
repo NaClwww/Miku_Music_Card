@@ -36,3 +36,32 @@
     transform: rotate(360deg);
   }
 }
+
+.listen-btn {
+  position: fixed;
+  bottom: 50px;
+  left: 50%;
+  transform: translateX(-50%);
+  z-index: 100;
+}
+
+.listen-btn button {
+  padding: 15px 30px;
+  font-size: 16px;
+  font-weight: bold;
+  background-color: #C20C0C;
+  color: white;
+  border: none;
+  border-radius: 25px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  box-shadow: 0 2px 6px rgba(0,0,0,0.2);
+}
+
+.listen-btn button:hover {
+  transform: scale(1.05);
+}
+
+.listen-btn button:active {
+  transform: scale(1);
+}
