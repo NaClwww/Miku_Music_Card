@@ -10,7 +10,7 @@ function App() {
       <header className="App-header">
         <Jump />
         <Showimg />
-        <button type="button" className="custom-button" onClick={AboutMe}>About Me</button>
+        <button type="button" className="custom-button" onClick={AboutMe}>About</button>
       </header>
     </div>
   );
