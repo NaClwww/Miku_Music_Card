@@ -19,7 +19,7 @@ jobs:
         node-version: '20'
 
     - name: Cache dependencies
-      uses: actions/cache@v3
+      uses: actions/cache@v4
       with:
         path: |
           react/node_modules     # 修改缓存路径
