@@ -1,24 +1,40 @@
-# This workflow will do a clean installation of node dependencies, cache/restore them, build the source code and run tests across different versions of node
-# For more information see: https://docs.github.com/en/actions/automating-builds-and-tests/building-and-testing-nodejs
-
-name: Node.js CI
+name: React CI
 
 on:
   push:
-    branches: [ "main" ]
+    branches: [ "main", "dev" ]  # 触发分支
+  pull_request:
+    branches: [ "main" ]         # PR 触发
 
 jobs:
   build:
-
     runs-on: ubuntu-latest
 
-    strategy:
-      matrix:
-        node-version: [18.x, 20.x, 22.x]
-        # See supported Node.js release schedule at https://nodejs.org/en/about/releases/
-
     steps:
-    - name: Navigate to react directory
-      run: cd react
-    - run: npm ci
-    - run: npm run build --if-present --output-path=../docker/build
+      # 步骤 1: 检出代码
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      # 步骤 2: 设置 Node.js 环境
+      - name: Setup Node.js
+        uses: actions/setup-node@v3
+        with:
+          node-version: 18.x      # 指定 Node 版本
+          cache: 'npm'            # 自动缓存依赖
+
+      # 步骤 3: 安装依赖
+      - name: Install dependencies
+        run: npm ci              # 推荐用 ci 代替 install
+
+      # 步骤 4: 构建项目
+      - name: Build
+        run: npm run build
+        env:
+          CI: true                # 强制启用 CI 模式
+
+      # 步骤 5: 上传构建产物（可选）
+      - name: Upload Artifact
+        uses: actions/upload-artifact@v3
+        with:
+          name: react-build
+          path: build/            # 上传构建目录
