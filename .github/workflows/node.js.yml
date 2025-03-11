@@ -19,7 +19,7 @@ jobs:
 
     steps:
     - name: Navigate to react directory
-      run: cd ./react
+      run: cd react
     - uses: actions/checkout@v4
     - name: Use Node.js ${{ matrix.node-version }}
       uses: actions/setup-node@v4
