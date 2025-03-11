@@ -1,40 +1,42 @@
-name: React CI
+name: React Build Deployment
 
 on:
   push:
-    branches: [ "main", "dev" ]  # 触发分支
-  pull_request:
-    branches: [ "main" ]         # PR 触发
+    branches: [ "main", "master" ]
 
 jobs:
   build:
     runs-on: ubuntu-latest
 
     steps:
-      # 步骤 1: 检出代码
-      - name: Checkout code
-        uses: actions/checkout@v4
+    - name: Checkout code
+      uses: actions/checkout@v4
 
-      # 步骤 2: 设置 Node.js 环境
-      - name: Setup Node.js
-        uses: actions/setup-node@v3
-        with:
-          node-version: 18.x      # 指定 Node 版本
-          cache: 'npm'            # 自动缓存依赖
+    # 关键修改：所有操作切换到/react目录
+    - name: Setup Node.js
+      uses: actions/setup-node@v4
+      with:
+        node-version: '20'
 
-      # 步骤 3: 安装依赖
-      - name: Install dependencies
-        run: npm ci              # 推荐用 ci 代替 install
+    - name: Cache dependencies
+      uses: actions/cache@v3
+      with:
+        path: |
+          react/node_modules     # 修改缓存路径
+          **/node_modules
+        key: ${{ runner.os }}-npm-${{ hashFiles('react/package-lock.json') }}  # 路径修改
 
-      # 步骤 4: 构建项目
-      - name: Build
-        run: npm run build
-        env:
-          CI: true                # 强制启用 CI 模式
+    # 在子目录中执行命令
+    - name: Install dependencies
+      working-directory: ./react  # 指定工作目录
+      run: npm ci
 
-      # 步骤 5: 上传构建产物（可选）
-      - name: Upload Artifact
-        uses: actions/upload-artifact@v3
-        with:
-          name: react-build
-          path: build/            # 上传构建目录
+    - name: Build project
+      working-directory: ./react  # 指定工作目录
+      run: npm run build
+
+    - name: Upload build artifacts
+      uses: actions/upload-artifact@v3
+      with:
+        name: production-build
+        path: react/build/  # 修改产物路径
