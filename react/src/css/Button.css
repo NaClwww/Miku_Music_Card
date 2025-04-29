@@ -1,0 +1,99 @@
+/* Button.css */
+.button-aboutme {
+  /* 基本样式 */
+  padding: 12px 25px;
+  font-size: 16px;
+  font-weight: 600;
+  background: linear-gradient(45deg, #39c6ff, #00a2ff);
+  color: white;
+  border-radius: 25px;
+  border: none;
+  cursor: pointer;
+  text-align: center;
+  text-decoration: none;
+  letter-spacing: 1px;
+  transition: all 0.3s ease;
+  box-shadow: 0 4px 10px rgba(0, 162, 255, 0.3);
+  
+  /* 添加半透明效果 */
+  opacity: 0.7;
+  
+  /* 定位在页面正中央 */
+  position: absolute;
+  bottom: 15%; /* 放在比jump按钮更靠下的位置 */
+  left: 50%;
+  transform: translateX(-50%);
+  z-index: 10;
+}
+
+.button-aboutme:hover {
+  background: linear-gradient(45deg, #00a2ff, #0080cc);
+  transform: translateX(-50%) translateY(-3px);
+  box-shadow: 0 6px 15px rgba(0, 162, 255, 0.4);
+  /* 悬停时恢复完全不透明 */
+  opacity: 1;
+}
+
+.button-aboutme:active {
+  transform: translateX(-50%) translateY(0);
+  box-shadow: 0 2px 5px rgba(0, 162, 255, 0.4);
+}
+
+/* 可选择其他主题颜色 */
+.button-aboutme.secondary {
+  background: linear-gradient(45deg, #f087b3, #e4406f);
+  box-shadow: 0 4px 10px rgba(228, 64, 111, 0.3);
+}
+
+.button-aboutme.secondary:hover {
+  background: linear-gradient(45deg, #e4406f, #c62f5b);
+  box-shadow: 0 6px 15px rgba(228, 64, 111, 0.4);
+}
+
+.button-jump {
+  /* 基本样式保持不变 */
+  padding: 12px 25px;
+  font-size: 16px;
+  font-weight: 600;
+  background: linear-gradient(45deg, #39c6ff, #00a2ff);
+  color: white;
+  border-radius: 25px;
+  border: none;
+  cursor: pointer;
+  text-align: center;
+  text-decoration: none;
+  letter-spacing: 1px;
+  transition: all 0.3s ease;
+  box-shadow: 0 4px 10px rgba(0, 162, 255, 0.3);
+  opacity: 0.7;
+  
+  /* 修改定位方式 */
+  position: absolute;
+  bottom: 5%; /* 从图片底部向上的距离 */
+  left: 50%;
+  transform: translateX(-50%); /* 只需要水平居中 */
+  z-index: 10; /* 确保按钮在图片上方 */
+}
+
+.button-jump:hover {
+  background: linear-gradient(45deg, #00a2ff, #0080cc);
+  transform: translateX(-50%) translateY(-3px); /* 修改hover效果 */
+  box-shadow: 0 6px 15px rgba(0, 162, 255, 0.4);
+  opacity: 1;
+}
+
+.button-jump:active {
+  transform: translateX(-50%) translateY(0); /* 修改active效果 */
+  box-shadow: 0 2px 5px rgba(0, 162, 255, 0.4);
+}
+
+/* 可选择其他主题颜色 */
+.button-jump.secondary {
+  background: linear-gradient(45deg, #f087b3, #e4406f);
+  box-shadow: 0 4px 10px rgba(228, 64, 111, 0.3);
+}
+
+.button-jump.secondary:hover {
+  background: linear-gradient(45deg, #e4406f, #c62f5b);
+  box-shadow: 0 6px 15px rgba(228, 64, 111, 0.4);
+}
